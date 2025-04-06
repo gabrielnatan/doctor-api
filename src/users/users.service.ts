@@ -53,10 +53,20 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    return await this.prisma.user.update({
-      data: updateUserDto,
-      where: { id },
-    });
+    try {
+      return await this.prisma.user.update({
+        data: updateUserDto,
+        where: { id },
+      });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        throw new ConflictException(ErrorMessages.USER.EMAIL_IN_USE);
+      }
+      throw error;
+    }
   }
 
   async remove(id: string) {
