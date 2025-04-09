@@ -9,4 +9,7 @@ export const ErrorMessages = {
   ADDRESS: {
     NOT_FOUND: (id: number | string) => `Endereço com id ${id} não encontrado.`,
   },
+  DOCTOR: {
+    NOT_FOUND: (id: number | string) => `Doutor com id ${id} não encontrado.`,
+  },
 };

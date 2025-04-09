@@ -24,4 +24,59 @@ model User {
   phone     String?
   role      Role
   createdAt DateTime @default(now())
+
+  patient   Patient?
+  doctor    Doctor?
+}
+
+model Patient {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  cpf            String   @unique
+  birthDate      DateTime
+  gender         String
+  bloodType      String
+  addressId      String?  @unique
+  photoUrl       String?
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address        Address? @relation(fields: [addressId], references: [id])
+}
+
+model Doctor {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  crm             String   @unique
+  specialtyId     String
+  addressId       String?  @unique
+
+  bio             String?
+  photoUrl        String?
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialty       Specialty @relation(fields: [specialtyId], references: [id])
+  address         Address?  @relation(fields: [addressId], references: [id])
+}
+
+model Specialty {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+
+  doctors     Doctor[]
+}
+
+model Address {
+  id         String   @id @default(uuid())
+  street     String
+  number     String
+  complement String?
+  district   String
+  city       String
+  state      String
+  zipCode    String
+  country    String   @default("Brazil")
+
+  patient    Patient?
+  doctor     Doctor?
 }

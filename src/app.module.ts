@@ -4,6 +4,11 @@ import { jwtConfig } from './config/jwt.config';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { PatientModule } from './patient/patient.module';
+import { AddressModule } from './address/address.module';
+import { DoctorController } from './doctor/doctor.controller';
+import { DoctorService } from './doctor/doctor.service';
+import { DoctorModule } from './doctor/doctor.module';
 
 @Module({
   imports: [
@@ -11,6 +16,11 @@ import { AuthModule } from './auth/auth.module';
     PrismaModule,
     UsersModule,
     AuthModule,
+    PatientModule,
+    AddressModule,
+    DoctorModule,
   ],
+  controllers: [DoctorController],
+  providers: [DoctorService],
 })
 export class AppModule {}
