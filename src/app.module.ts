@@ -9,6 +9,9 @@ import { AddressModule } from './address/address.module';
 import { DoctorController } from './doctor/doctor.controller';
 import { DoctorService } from './doctor/doctor.service';
 import { DoctorModule } from './doctor/doctor.module';
+import { OrganizationModule } from './organization/organization.module';
+import { ServiceModule } from './service/service.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { DoctorModule } from './doctor/doctor.module';
     PatientModule,
     AddressModule,
     DoctorModule,
+    OrganizationModule,
+    ServiceModule,
+    ProductModule,
   ],
   controllers: [DoctorController],
   providers: [DoctorService],
