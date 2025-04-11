@@ -16,10 +16,8 @@ enum Role {
 
 enum OrganizationType {
   CLINIC
-  VET_CLINIC
   HOSPITAL
-  PETSHOP
-  LAB
+  PHARMACY
 }
 
 model User {
@@ -33,7 +31,7 @@ model User {
 
   patient   Patient?
   doctor    Doctor?
-  organizationId String? // se quiser vincular usuários à org
+  organizationId String? 
   organization   Organization? @relation(fields: [organizationId], references: [id])
 }
 
@@ -116,7 +114,7 @@ model Service {
   name           String
   description    String?
   price          Decimal       @default(0.00)
-  duration       Int           // duração em minutos
+  duration       Int           
   organizationId String
 
   organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)

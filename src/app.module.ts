@@ -12,6 +12,7 @@ import { DoctorModule } from './doctor/doctor.module';
 import { OrganizationModule } from './organization/organization.module';
 import { ServiceModule } from './service/service.module';
 import { ProductModule } from './product/product.module';
+import { SetupModule } from './setup/setup.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ProductModule } from './product/product.module';
     OrganizationModule,
     ServiceModule,
     ProductModule,
+    SetupModule,
   ],
   controllers: [DoctorController],
   providers: [DoctorService],
